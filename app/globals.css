@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* =============================================
+   FORGE DESIGN SYSTEM
+   ============================================= */
+
+:root {
+  /* Core Background */
+  --bg-base: #080b0a;
+  --bg-surface: #0f1411;
+  --bg-elevated: #161d18;
+  --bg-hover: #1e2820;
+  --bg-active: #243022;
+
+  /* Forge Green Palette */
+  --forge-empty: #141a16;
+  --forge-pale: #1a3528;
+  --forge-light: #1e5c3a;
+  --forge-medium: #2d8a56;
+  --forge-strong: #3ab86e;
+  --forge-deep: #4ade80;
+  --forge-max: #6ee7a0;
+
+  /* Accent */
+  --accent-green: #4ade80;
+  --accent-green-dim: #22c55e;
+  --accent-glow: rgba(74, 222, 128, 0.15);
+  --accent-glow-strong: rgba(74, 222, 128, 0.3);
+
+  /* Text */
+  --text-primary: #f0faf4;
+  --text-secondary: #8aaa96;
+  --text-muted: #4a6355;
+  --text-accent: #4ade80;
+
+  /* Border */
+  --border-subtle: rgba(74, 222, 128, 0.08);
+  --border-default: rgba(74, 222, 128, 0.15);
+  --border-strong: rgba(74, 222, 128, 0.3);
+
+  /* Danger */
+  --danger: #f87171;
+  --warning: #fbbf24;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-green: 0 0 20px rgba(74, 222, 128, 0.12);
+  --shadow-green-strong: 0 0 40px rgba(74, 222, 128, 0.25);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* =============================================
+   FORGE SQUARE COLORS
+   ============================================= */
+.square-empty  { background: var(--forge-empty); }
+.square-pale   { background: var(--forge-pale); }
+.square-light  { background: var(--forge-light); }
+.square-medium { background: var(--forge-medium); }
+.square-strong { background: var(--forge-strong); }
+.square-deep   { background: var(--forge-deep); }
+.square-max    { background: var(--forge-max); box-shadow: 0 0 6px rgba(110,231,160,0.4); }
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+
+@keyframes forge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.15); }
+}
+
+@keyframes square-fill {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes streak-bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-4px); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-right {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-up-sheet {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes checkmark-pop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Animation utility classes */
+.animate-forge-pulse { animation: forge-pulse 2s ease-in-out infinite; }
+.animate-square-fill { animation: square-fill 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-fade-up { animation: fade-up 0.5s ease forwards; }
+.animate-fade-in { animation: fade-in 0.3s ease forwards; }
+.animate-slide-right { animation: slide-right 0.4s ease forwards; }
+.animate-slide-up-sheet { animation: slide-up-sheet 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-checkmark-pop { animation: checkmark-pop 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-count-up { animation: count-up 0.4s ease forwards; }
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+/* =============================================
+   FORGE CARD COMPONENT
+   ============================================= */
+.forge-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.forge-card:hover {
+  border-color: var(--border-default);
+}
+.forge-card-elevated {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* =============================================
+   FORGE BUTTON
+   ============================================= */
+.forge-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+.forge-btn-primary {
+  background: var(--accent-green);
+  color: #080b0a;
+}
+.forge-btn-primary:hover {
+  background: var(--forge-max);
+  box-shadow: var(--shadow-green-strong);
+  transform: translateY(-1px);
+}
+.forge-btn-primary:active { transform: translateY(0); }
+
+.forge-btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+}
+.forge-btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.forge-btn-danger {
+  background: rgba(248,113,113,0.1);
+  color: var(--danger);
+  border: 1px solid rgba(248,113,113,0.2);
+}
+.forge-btn-danger:hover {
+  background: rgba(248,113,113,0.2);
+}
+
+/* =============================================
+   FORGE INPUT
+   ============================================= */
+.forge-input {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+.forge-input::placeholder { color: var(--text-muted); }
+.forge-input:focus {
+  border-color: var(--accent-green-dim);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
+}
+
+/* =============================================
+   FORGE CHECKBOX
+   ============================================= */
+.forge-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border-strong);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+.forge-checkbox:hover {
+  border-color: var(--accent-green);
+  background: var(--accent-glow);
+}
+.forge-checkbox.checked {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  box-shadow: 0 0 12px rgba(74,222,128,0.4);
+  animation: checkmark-pop 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* =============================================
+   PROGRESS BAR
+   ============================================= */
+.forge-progress {
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.forge-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--accent-green-dim), var(--accent-green));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(74,222,128,0.5);
+}
+
+/* =============================================
+   MODAL / OVERLAY
+   ============================================= */
+.forge-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  animation: fade-in 0.2s ease;
+}
+.forge-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-default);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 24px;
+  z-index: 51;
+  animation: slide-up-sheet 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* =============================================
+   BADGE
+   ============================================= */
+.forge-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+.forge-badge-green {
+  background: rgba(74,222,128,0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(74,222,128,0.2);
+}
+.forge-badge-amber {
+  background: rgba(251,191,36,0.12);
+  color: var(--warning);
+  border: 1px solid rgba(251,191,36,0.2);
+}
+
+/* =============================================
+   STREAK FIRE
+   ============================================= */
+.streak-fire {
+  font-size: 1.2em;
+  animation: streak-bounce 1s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* =============================================
+   GRADIENT TEXT
+   ============================================= */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-green), var(--forge-max));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   HABIT MINI HEATMAP
+   ============================================= */
+.mini-heatmap {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.mini-heatmap-square {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+.mini-heatmap-square:hover { transform: scale(1.4); }
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.nav-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.nav-item.active {
+  background: var(--accent-glow);
+  color: var(--accent-green);
+  border-color: rgba(74,222,128,0.15);
+}
+.nav-item.active svg { color: var(--accent-green); }
+
+/* =============================================
+   TODAY SQUARE (THE HERO)
+   ============================================= */
+.today-square-wrapper {
+  position: relative;
+}
+.today-square-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(74,222,128,0.3), transparent, rgba(74,222,128,0.1));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.today-square-wrapper.active::after { opacity: 1; }
+
+/* =============================================
+   TASK SWIPE GESTURE STYLES
+   ============================================= */
+.task-item {
+  position: relative;
+  overflow: hidden;
+}
+.task-swipe-reveal-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background: rgba(74,222,128,0.15);
+  color: var(--accent-green);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 6px;
+  pointer-events: none;
+}
+.task-swipe-reveal-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background: rgba(251,191,36,0.15);
+  color: var(--warning);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 6px;
+  pointer-events: none;
+}
+
+/* =============================================
+   SHAREABLE CARD
+   ============================================= */
+.share-card {
+  background: linear-gradient(135deg, #0f1a13 0%, #0a1410 50%, #0d1b11 100%);
+  border: 1px solid rgba(74,222,128,0.2);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.share-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(74,222,128,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* =============================================
+   LANDING PAGE
+   ============================================= */
+.hero-gradient {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(74,222,128,0.12) 0%, transparent 70%);
+}
+.hero-map-glow {
+  box-shadow: 0 0 80px rgba(74,222,128,0.15), 0 0 160px rgba(74,222,128,0.05);
+}
+
+/* =============================================
+   UTILITY
+   ============================================= */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--accent-green); }
+.border-subtle { border-color: var(--border-subtle); }
+
+.no-select { user-select: none; }
+.clickable { cursor: pointer; }
